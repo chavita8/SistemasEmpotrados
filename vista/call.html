@@ -1,67 +1,10 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
+<meta charset="utf-8" />
 <title>PuntoSmart</title>
+<link rel="stylesheet" href="/stylesheet/style.css" type="text/css" />
 
-
-<style>
-
-body{
-text-align:center;
-background: #49a9ec;background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #194b6d), color-stop(1, #49a9ec));
-background-image: -moz-linear-gradient(top,  #194b6d 0%, #49a9ec 100%);
-background-image: -o-linear-gradient(top,  #194b6d 0%, #49a9ec 100%);;
-background-repeat: repeat-x;
-
-background: #88dbf2;background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #095796), color-stop(1, #88dbf2));
-background-image: -moz-linear-gradient(top,  #095796 0%, #88dbf2 100%);
-background-image: -o-linear-gradient(top,  #095796 0%, #88dbf2 100%);;
-background-repeat: repeat-x;
-}
-
-div{
-width:150px;
-height:80px;
-margin-top:5px;
-background:rgba(40,40,40,1);
-color:white;
-display:inline-block;
-font-size:30px;
-cursor:pointer;
-border-radius:20px;
-vertical-align:middle;
-line-height: 80px;
-box-shadow: inset rgba(255,255,255, .6) 0 -1px 1px 0;
-}
-
-div:hover{background:rgba(50,50,50,1);
-box-shadow: inset rgba(255,255,255,1) 0 0 1px 0 ;
-background:rgba(250,250,250, .4);
-}
-
-div:active{background:rgba(255,255,255, 1);}
-
-input{
-width:450px;
-height:70px;
-font-size:30px;
-margin-top:5px;
-bborder:2px solid #444;
-text-align:center;
-padding:0 5px;
-vertical-align:middle;
-line-height: 80px;
-border-radius:20px;
-}
-
-.baraz{
-width:450px;
-}
-
-.shej{
-background:rgba(230,230,230, .4);
-}
-</style>
-<meta charset="utf-8">
 </head>
 <body>
 <br>
@@ -91,55 +34,7 @@ background:rgba(230,230,230, .4);
 <div id="call" class="baraz" onclick="call()">Llamar</div>
 
 <script src="http://localhost:8081/socket.io/socket.io.js"></script>
+<script src="/script/scriptview.js"></script>
 
-<script>
-var valActual, valNuevo;
-var llamando = false;
-var socket = io.connect('http://localhost:8081');
-
-function getTextValue(){
-  return document.getElementById('intext').value;
-}
-
-function setTextValue(value){
-  document.getElementById('intext').value = value;
-}
-
-
-function marcar(id,value){
-  valActual = getTextValue();
-  setTextValue(valActual + value);
-
-}
-
-function call(){
-  var block = document.getElementById('call');
-  var numero = getTextValue();
-  if(!llamando){
-    block.innerHTML = block.innerHTML.replace('Llamar','Colgar');
-    llamando = true;
-    socket.emit('llamar',numero);
-
-
-  }else{
-    block.innerHTML = block.innerHTML.replace('Colgar','Llamar');
-    llamando = false;
-    socket.emit('colgar');
-
-  }
-}
-
-function eliminar(){
-  valActual = getTextValue();
-  valNuevo = valActual.substring(0,valActual.length-1);
-  setTextValue(valNuevo);
-
-}
-
-var cls = function(){
-  setTextValue("");
-};
-
-</script>
-
-</body></html>
+</body>
+</html>
